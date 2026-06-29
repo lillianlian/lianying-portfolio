@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>连滢 / LIANYING — 导演 × AI 整合营销</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;700&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#FF6B35; --blue:#2D5BFF; --yellow:#FFD23F; --ink:#1A1A1A; --bg:#FFF8EE; --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans SC","Inter",sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+h1,h2,h3,.disp{font-family:"Archivo Black","Noto Sans SC",sans-serif;line-height:1.02;letter-spacing:-1px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.brutal-card{border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);background:var(--white)}
+.brutal-btn{display:inline-block;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);background:var(--orange);color:var(--ink);
+  font-weight:900;padding:14px 26px;text-decoration:none;cursor:pointer;transition:transform .12s,box-shadow .12s;font-size:1rem}
+.brutal-btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.brutal-btn.alt{background:var(--white)}
+.tag{display:inline-block;background:var(--yellow);border:2.5px solid var(--ink);padding:6px 14px;font-weight:700;
+  transform:rotate(-3deg);box-shadow:3px 3px 0 var(--ink);font-size:.9rem}
+.hl{background:linear-gradient(transparent 55%, var(--yellow) 55%);padding:0 4px}
+section{padding:90px 0;position:relative}
+.kicker{font-family:"Space Grotesk";font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-size:.95rem;margin-bottom:14px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:3px solid var(--ink)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto}
+.logo{font-family:"Archivo Black";font-size:1.3rem}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--orange)}
+.nav-cta{background:var(--orange);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:8px 16px!important;color:var(--ink)!important}
+.burger{display:none;font-size:1.8rem;background:none;border:none;cursor:pointer}
+.mobile-menu{display:none}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+.hero h1{font-size:clamp(2.6rem,8.5vw,7rem)}
+.hero .l2{color:var(--blue)}
+.hero .l3{color:var(--orange)}
+.hero-sub{font-size:clamp(1rem,2.2vw,1.35rem);font-weight:700;margin:26px 0 8px;max-width:680px}
+.stamp{position:absolute;top:8%;right:4%;background:var(--blue);color:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  padding:12px 18px;font-family:"Space Grotesk";font-weight:700;transform:rotate(5deg);font-size:.85rem;text-align:center}
+.hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+.float{animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.stat{padding:24px 18px;text-align:center}
+.stat:nth-child(1){background:var(--orange);color:#fff}
+.stat:nth-child(2){background:var(--blue);color:#fff}
+.stat:nth-child(3){background:var(--yellow)}
+.stat:nth-child(4){background:var(--white)}
+.stat .num{font-family:"Archivo Black";font-size:clamp(1.6rem,4vw,2.6rem)}
+.stat .lab{font-weight:700;font-size:.85rem;margin-top:6px}
+
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+.bio{padding:34px;font-size:1.1rem;line-height:1.7;font-weight:400}
+.bio b{color:var(--orange)}
+
+/* timeline cards */
+.job{padding:28px;margin-bottom:26px;position:relative}
+.job .co{font-family:"Archivo Black";font-size:1.4rem}
+.job .role{font-weight:700;color:var(--blue);margin:4px 0}
+.job .date{font-family:"Space Grotesk";font-weight:700;color:var(--orange);font-size:.9rem}
+.job ul{margin:14px 0 0 18px;line-height:1.7}
+.job .corner{position:absolute;top:-14px;right:18px}
+
+/* films grid */
+.films{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.film{overflow:hidden}
+.film .thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:3px solid var(--ink)}
+.film .body{padding:18px}
+.film h3{font-size:1.1rem;margin-bottom:4px}
+.film .r{color:var(--blue);font-weight:700;font-size:.82rem}
+.film p{font-size:.9rem;margin-top:8px;line-height:1.5}
+.ribbon{display:inline-block;background:var(--yellow);border:2px solid var(--ink);padding:2px 10px;font-weight:700;font-size:.75rem;margin-top:10px}
+
+/* skills */
+.skgroup{margin-bottom:24px}
+.skgroup h4{font-family:"Space Grotesk";letter-spacing:1px;margin-bottom:12px;color:var(--orange)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);background:#fff;padding:8px 16px;font-weight:700;border-radius:30px;
+  transition:transform .12s,box-shadow .12s;font-size:.9rem}
+.chip:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+
+/* honors */
+.honors{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+.badge{padding:18px 24px;font-weight:900;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);font-size:1rem}
+.badge:nth-child(1){background:var(--orange);color:#fff;transform:rotate(-2deg)}
+.badge:nth-child(2){background:var(--yellow);transform:rotate(1deg)}
+.badge:nth-child(3){background:var(--blue);color:#fff;transform:rotate(-1deg)}
+.badge:nth-child(4){background:#fff;transform:rotate(2deg)}
+
+/* contact */
+.contact{text-align:center}
+.contact h2{font-size:clamp(2rem,6vw,4.5rem)}
+.big-link{display:block;font-family:"Archivo Black";font-size:clamp(1.4rem,4vw,2.4rem);color:var(--ink);text-decoration:none;margin:14px 0;
+  transition:color .15s}
+.big-link:hover{color:var(--orange)}
+footer{border-top:3px solid var(--ink);padding:30px 0;text-align:center;font-weight:700}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;
+  padding:14px 24px;font-weight:700;border-radius:8px;transition:transform .3s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .films{grid-template-columns:1fr}
+  .stamp{position:static;display:inline-block;margin-bottom:20px;transform:rotate(-2deg)}
+  .mobile-menu.open{display:flex;flex-direction:column;gap:24px;position:fixed;inset:0;background:var(--bg);z-index:60;
+    align-items:center;justify-content:center;font-size:1.5rem}
+  .mobile-menu a{color:var(--ink);text-decoration:none;font-weight:900}
+  .mobile-menu .close{position:absolute;top:24px;right:28px;font-size:2.4rem;cursor:pointer}
+}
+@media(prefers-reduced-motion:reduce){.float{animation:none}.reveal{transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo">连滢 / LIANYING</div>
+    <div class="nav-links">
+      <a href="#about">关于</a><a href="#work">经历</a><a href="#films">作品</a>
+      <a href="#skills">技能</a><a href="#contact">联系</a>
+      <a href="#contact" class="nav-cta">下载简历</a>
+    </div>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mm">
+  <span class="close" id="mmClose">×</span>
+  <a href="#about">关于</a><a href="#work">经历</a><a href="#films">作品</a><a href="#skills">技能</a><a href="#contact">联系</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="stamp">BEIJING<br>AI · MARKETING<br>○ 在线</div>
+    <div class="kicker">Director × AI-Integrated Marketing</div>
+    <h1><span>我是连滢，</span><br><span class="l2">导演 × </span><span class="l3">AI整合营销人</span></h1>
+    <p class="hero-sub">爱丁堡大学导演硕士 · 3年+ AI整合营销 · 上海电影节「全球AI电影马拉松」评审团大奖</p>
+    <p style="font-weight:700;color:#555">既能<span class="hl">定传播方向、搭内容框架</span>，也能<span class="hl">统筹达人矩阵、跑数智化运营</span>。</p>
+    <div class="hero-cta">
+      <a href="#films" class="brutal-btn">看我的作品 →</a>
+      <a href="#contact" class="brutal-btn alt">联系我</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="kicker">About / 关于我</div>
+    <div class="about-grid">
+      <div class="brutal-card bio reveal">
+        导演出身，现深耕 <b>AI + 整合营销</b>。从内容策略到落地执行的完整闭环我都能跑通——
+        服务过<b>宁德时代、太平洋保险、小红书、星纪魅族、英特尔、华润雪花</b>等头部品牌。
+        擅长把抽象的产品卖点，转化成观众可感知的沉浸式内容；多个项目实现全网百万级曝光，
+        并落地数智化运营体系驱动业务增长。<br><br>
+        我相信好创意 + AI 效率 = 真正能打的营销。🎬✨
+      </div>
+      <div class="stats reveal" style="grid-template-columns:repeat(2,1fr);margin-top:0">
+        <div class="stat brutal-card"><div class="num" data-c="3">0</div><div class="lab">年+ AI整合营销</div></div>
+        <div class="stat brutal-card"><div class="num" data-c="118">0</div><div class="lab">万 单条爆款播放</div></div>
+        <div class="stat brutal-card"><div class="num" data-c="10">0</div><div class="lab">+ 头部品牌</div></div>
+        <div class="stat brutal-card"><div class="num" data-c="214">0</div><div class="lab">万PV 数智项目曝光</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" style="background:#fff;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)">
+  <div class="wrap">
+    <div class="kicker">Work / 工作经历</div>
+    <h2 style="font-size:clamp(1.8rem,5vw,3rem);margin-bottom:34px">我做过这些 👇</h2>
+
+    <div class="job brutal-card reveal">
+      <span class="tag corner">2023.04 – 今</span>
+      <div class="co">蓝色光标传播集团</div>
+      <div class="role">AI营销业务部 · 高级客户专员</div>
+      <ul>
+        <li>宁德时代：S级发布会(Techday极域之约)统筹、极限测试拍摄项目统筹、AIGC线下体验+小程序H5全流程；物流workshop 388w+曝光，单条抖音破118.2w。</li>
+        <li>太平洋保险：从0到1搭建数智化运营体系，A1–A5五层分群Agent、45.5万客户标签；累计214万PV、带动保费约76.8万元。</li>
+        <li>小红书商业化：连续3年，两届WILL商业大会创意物料与文案、种草案例集《看一粒种子发芽》、种草大赏、Redland专项。</li>
+        <li>星纪魅族：Flyme Auto季度全链路传播、广州车展专项(全网441.67w)、StarV AR眼镜「财经+科技」双圈层传播。</li>
+        <li>英特尔 / 华润雪花：AIGC社媒运营 + CNY多人换脸互动营销。</li>
+      </ul>
+    </div>
+
+    <div class="job brutal-card reveal">
+      <span class="tag corner" style="background:var(--blue);color:#fff">2022.01 – 2023.03</span>
+      <div class="co">江苏原力数字科技</div>
+      <div class="role">内容运营主管</div>
+      <ul>
+        <li>立白/咪咕 数字人「李叙白」「当归」运营 PM，独立完成客户沟通到高质量交付全流程。</li>
+        <li>动画剧集《故宫里的大怪兽》一/二季宣发；无锡拈花湾《梦回唐樱》宣传片 PM。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section id="films">
+  <div class="wrap">
+    <div class="kicker">Selected Films / 作品</div>
+    <h2 style="font-size:clamp(1.8rem,5vw,3rem);margin-bottom:34px">镜头里的故事 🎬</h2>
+    <div class="films">
+      <div class="film brutal-card reveal"><div class="thumb" style="background:var(--orange)">🏆</div>
+        <div class="body"><h3>AI 电影马拉松作品</h3><div class="r">导演 / 创意</div>
+        <p>上海电影节「全球AI电影马拉松」获最高荣誉评审团大奖。</p><span class="ribbon">★ 评审团大奖</span></div></div>
+      <div class="film brutal-card reveal"><div class="thumb" style="background:var(--blue)">🎥</div>
+        <div class="body"><h3>《猎心之血亲》</h3><div class="r">院线电影 · 署名</div>
+        <p>已上映院线电影，参与前期策划、剧本孵化与后期宣发。</p></div></div>
+      <div class="film brutal-card reveal"><div class="thumb" style="background:var(--yellow)">🎞️</div>
+        <div class="body"><h3>《猎心之骨证》</h3><div class="r">网络电影 · 署名</div>
+        <p>已上映网络电影，参与项目策划与制作落地。</p></div></div>
+      <div class="film brutal-card reveal"><div class="thumb" style="background:var(--ink);color:#fff">🥇</div>
+        <div class="body"><h3>The Crowbar Award 金奖</h3><div class="r">实拍短片</div>
+        <p>电影节实拍作品，斩获金奖。</p><span class="ribbon">🥇 金奖</span></div></div>
+      <div class="film brutal-card reveal"><div class="thumb" style="background:var(--orange)">🏯</div>
+        <div class="body"><h3>《故宫里的大怪兽》</h3><div class="r">动画剧集 · 宣发</div>
+        <p>一/二季新媒体宣发物料与预告片剪辑制作。</p></div></div>
+      <div class="film brutal-card reveal"><div class="thumb" style="background:var(--blue)">🌸</div>
+        <div class="body"><h3>《梦回唐樱》宣传片</h3><div class="r">项目 PM</div>
+        <p>无锡拈花湾宣传片，从策划到成片全流程把控。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:#fff;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)">
+  <div class="wrap">
+    <div class="kicker">Skills / 技能</div>
+    <h2 style="font-size:clamp(1.8rem,5vw,3rem);margin-bottom:34px">我的工具箱 🧰</h2>
+    <div class="reveal">
+      <div class="skgroup"><h4>创意与策略</h4><div class="chips">
+        <span class="chip">整合营销</span><span class="chip">品牌传播</span><span class="chip">新媒体运营</span>
+        <span class="chip">达人矩阵</span><span class="chip">活动运营 B/C端</span><span class="chip">内容策略</span></div></div>
+      <div class="skgroup"><h4>AI 工具</h4><div class="chips">
+        <span class="chip">Midjourney</span><span class="chip">Runway</span><span class="chip">即梦</span>
+        <span class="chip">Nano Banana</span><span class="chip">AIGC内容生产</span><span class="chip">AI Coding</span></div></div>
+      <div class="skgroup"><h4>影视制作</h4><div class="chips">
+        <span class="chip">剧本/分镜</span><span class="chip">拍摄统筹</span><span class="chip">剪辑</span><span class="chip">宣发</span></div></div>
+      <div class="skgroup"><h4>软件</h4><div class="chips">
+        <span class="chip">剪映</span><span class="chip">Premiere Pro</span><span class="chip">After Effects</span>
+        <span class="chip">Figma</span><span class="chip">PS / AI</span><span class="chip">Lightroom</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HONORS -->
+<section id="honors">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center">Honors / 荣誉</div>
+    <div class="honors reveal">
+      <div class="badge">🏆 上海电影节 · 评审团大奖</div>
+      <div class="badge">🥇 The Crowbar Award · 金奖</div>
+      <div class="badge">🎬 新加坡青年电影节 · 两次入围</div>
+      <div class="badge">🎓 本科一等学位 First Class</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact" style="background:var(--orange);border-top:3px solid var(--ink)">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--ink)">Contact / 联系</div>
+    <h2>一起做点<br>有意思的 →</h2>
+    <a href="mailto:915815005@qq.com" class="big-link" id="emailLink">915815005@qq.com</a>
+    <a href="tel:13241870318" class="big-link">13 2418 70318</a>
+    <p style="font-weight:700;margin-top:14px">📍 北京 · 中英双语 · 可远程协作</p>
+  </div>
+</section>
+
+<footer>Designed with ❤ by 连滢 · 2026 &nbsp; <a href="#top" style="color:var(--orange);text-decoration:none;font-weight:900">↑ 回到顶部</a></footer>
+<div class="toast" id="toast">邮箱已复制 ✓</div>
+
+<script>
+// mobile menu
+const burger=document.getElementById('burger'),mm=document.getElementById('mm'),mmClose=document.getElementById('mmClose');
+burger.onclick=()=>mm.classList.add('open');
+mmClose.onclick=()=>mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>mm.classList.remove('open'));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// active nav
+const secs=[...document.querySelectorAll('section[id]')];
+const navA=[...document.querySelectorAll('.nav-links a:not(.nav-cta)')];
+const sio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+  navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>sio.observe(s));
+
+// count up
+let counted=false;
+const aboutSec=document.getElementById('about');
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!counted){counted=true;
+  document.querySelectorAll('.num[data-c]').forEach(n=>{const t=+n.dataset.c;let c=0;const step=Math.max(1,Math.ceil(t/40));
+    const tm=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(tm)}n.textContent=c},28);});}}),{threshold:.4});
+cio.observe(aboutSec);
+
+// copy email
+document.getElementById('emailLink').addEventListener('click',e=>{
+  if(navigator.clipboard){e.preventDefault();navigator.clipboard.writeText('915815005@qq.com').then(()=>{
+    const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);});}
+});
+</script>
+</body>
+</html>
